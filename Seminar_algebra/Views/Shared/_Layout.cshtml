@@ -31,9 +31,43 @@
 
                 @Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Seminari", "Popis", "Seminari", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Upisi","upisi", "Seminari", new { area =""}, new { @class= "navbar-brand"})
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Employee List", "Index", "Employees", new { @class = "nav-link" })</li>
+
+                        <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { @class = "nav-link" })</li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-center text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @User.Identity.Name
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">My Account</a>
+                                <a class="dropdown-item" href="#">Edit Profile</a>
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Logout", "Logout", "Home", new { @class = "nav-link text-center text-uppercase" })
+                            </div>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
+
+                        <li>@Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })</li>
+
+                        <li>@Html.ActionLink("Register", "Register", "Home", new { @class = "nav-link float-left" })</li>
+
+                        <li>@Html.ActionLink("Login", "Login", "Home", new { @class = "nav-link float-left" })</li>
+
+
+
+                    }
                 </ul>
             </div>
             </div>

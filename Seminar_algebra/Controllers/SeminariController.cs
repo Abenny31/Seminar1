@@ -1,10 +1,8 @@
 ﻿using Seminar_algebra.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
 
 
 
@@ -46,7 +44,7 @@ namespace Seminar_algebra.Controllers
 
             if (ModelState.IsValid)
             {
-                _Db._dboPb .Add(b);
+                _Db._dboPb.Add(b);
                 _Db.SaveChanges();
                 ViewBag.uredu = "Osoba je dodana";
                 return RedirectToAction("Popis");
@@ -58,6 +56,42 @@ namespace Seminar_algebra.Controllers
             }
             //return View();
         }
+        [Authorize]
+        [HttpGet]
+        public ActionResult upisi()
+        {
+            return View(_Db._dboPb.ToList());
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+
+
+            var uredi = _Db._dboPb.Where(o => o.IdPredbiljezba == id).FirstOrDefault();
+
+
+            return View(uredi);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Edit(Predbiljezba uredena)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _Db.Entry(uredena).State = EntityState.Modified;
+                _Db.SaveChanges();
+                return RedirectToAction("upisi");
+            }
+            return View(uredena);
+
+
+        }
+
+
     }
 }
 /*
