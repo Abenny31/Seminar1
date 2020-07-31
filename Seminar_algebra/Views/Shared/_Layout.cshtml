@@ -8,19 +8,10 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        @*<div class="dropdown">
-            <button class="dropbtn">
-                Dropdown
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-            </div>
-        </div>*@
+
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,60 +22,59 @@
 
                 @Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Seminari", "Popis", "Seminari", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Upisi","upisi", "Seminari", new { area =""}, new { @class= "navbar-brand"})
+                @Html.ActionLink("Zaposlenici", "Index", "Zaposleniks", new { area = "" }, new { @class = "navbar-brand" })
             </div>
 
-            <div class="navbar-collapse collapse">
+            <div class="collapse navbar-collapse navbar-right ">
+            
                 <ul class="nav navbar-nav">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Employee List", "Index", "Employees", new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Popis upisanih", "upisi", "Seminari", new { @class = "nav-link" }, null)</li>
 
-                        <li>@Html.ActionLink("Add New Employee", "Create", "Employees", new { @class = "nav-link" })</li>
+
+
+                        <li>@Html.ActionLink("Novi Zaposlenik", "Register", "Home", null, new { @class = "nav-link" })</li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-center text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @User.Identity.Name
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">My Account</a>
-                                <a class="dropdown-item" href="#">Edit Profile</a>
-                                <div class="dropdown-divider"></div>
-                                @Html.ActionLink("Logout", "Logout", "Home", new { @class = "nav-link text-center text-uppercase" })
+                                
+                                @Html.ActionLink("Odjava", "Logout", "Home", new { @class = "nav-link text-center text-uppercase" }, null)
                             </div>
                         </li>
 
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
 
-                        <li>@Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })</li>
 
-                        <li>@Html.ActionLink("Register", "Register", "Home", new { @class = "nav-link float-left" })</li>
 
-                        <li>@Html.ActionLink("Login", "Login", "Home", new { @class = "nav-link float-left" })</li>
+                        <li>@Html.ActionLink("Prijava", "Login", "Home", null, new { @class = "nav-link float-left" })</li>
 
 
 
                     }
                 </ul>
             </div>
-            </div>
+
+        </div>
 
 
     </div>
 
 
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Ante Benic Seminar</p>
+        </footer>
+    </div>
 
-        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

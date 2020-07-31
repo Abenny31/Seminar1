@@ -16,7 +16,11 @@ namespace Seminar_algebra.Models
         public string Prezime { get; set; }
         public string KorisnickoIme { get; set; }
         public string Lozinka { get; set; }
+
+        
     }
+    
+   
 
     
     

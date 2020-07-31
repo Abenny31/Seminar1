@@ -91,6 +91,12 @@ namespace Seminar_algebra.Controllers
 
         }
 
+        [HttpGet]
+        [Authorize]
+        public ActionResult Create()
+        {
+            return View();
+        }
 
     }
 }

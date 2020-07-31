@@ -146,13 +146,13 @@
     <Content Include="Views\Seminari\Predbiljezba.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Zaposleniks\Create.cshtml" />
     <Content Include="Views\Zaposleniks\Delete.cshtml" />
     <Content Include="Views\Zaposleniks\Details.cshtml" />
     <Content Include="Views\Zaposleniks\Edit.cshtml" />
     <Content Include="Views\Zaposleniks\Index.cshtml" />
     <Content Include="Views\Seminari\upisi.cshtml" />
     <Content Include="Views\Seminari\Edit.cshtml" />
+    <Content Include="Views\Seminari\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

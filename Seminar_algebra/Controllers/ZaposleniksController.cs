@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using Seminar_algebra.Models;
 
 namespace Seminar_algebra.Controllers
-{
+{[Authorize]
     public class ZaposleniksController : Controller
     {
         private bazaDbContext db = new bazaDbContext();
@@ -35,28 +35,7 @@ namespace Seminar_algebra.Controllers
             return View(zaposlenik);
         }
 
-        // GET: Zaposleniks/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Zaposleniks/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdZaposlenik,Ime,Prezime,KorisnickoIme,Lozinka")] Zaposlenik zaposlenik)
-        {
-            if (ModelState.IsValid)
-            {
-                db._dboZp.Add(zaposlenik);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(zaposlenik);
-        }
+        
 
         // GET: Zaposleniks/Edit/5
         public ActionResult Edit(int? id)
