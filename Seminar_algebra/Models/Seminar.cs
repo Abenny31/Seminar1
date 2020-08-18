@@ -17,5 +17,6 @@ namespace Seminar_algebra.Models
         public string Opis { get; set; }
         public DateTime Datum { get; set; }
 
+       
     }
 }

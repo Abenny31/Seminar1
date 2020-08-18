@@ -14,5 +14,10 @@ namespace Seminar_algebra.Models
         public DbSet<Predbiljezba> _dboPb { get; set; }
         public DbSet<Seminar> _dboSm { get; set; }
         public DbSet<Zaposlenik> _dboZp { get; set; }
+
+        
+
     }
+
+    
 }

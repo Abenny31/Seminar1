@@ -1,6 +1,8 @@
 ﻿using Seminar_algebra.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -28,10 +30,7 @@ namespace Seminar_algebra.Controllers
                 Predbiljezba aktivna = new Predbiljezba();
                 aktivna.FkSeminar = (int)id;
                 aktivna.Datum = datum;
-                //var seminar = _Db._dboSm.Where(o => o.IdSeminar == id).FirstOrDefault();
-                //int dd = (int)id;
-                //ViewBag.Fkseminar = dd;
-                //ViewData ["nesto"] = aktivna;
+
 
                 return View(aktivna);
             }
@@ -58,9 +57,50 @@ namespace Seminar_algebra.Controllers
         }
         [Authorize]
         [HttpGet]
-        public ActionResult upisi()
+
+        public ActionResult upisi(string odabirSeminara, string statusOdobrenja)
         {
+            //izbor seminara za pretragu
+            var listaSeminara = new List<string>();
+            var popisSeminara = from d in _Db._dboSm
+                                orderby d.Naziv
+                                select d.Naziv;
+            listaSeminara.AddRange(popisSeminara.Distinct());
+            ViewBag.odabirSeminara = new SelectList(listaSeminara);
+            //izbor statusa
+            var listaStatusa = new List<string>();
+            listaStatusa.Add("Odobreni");
+            listaStatusa.Add("Neodobreni");
+            ViewBag.statusOdobrenja = new SelectList(listaStatusa);
+
+
+            var upisi = from m in _Db._dboPb select m;
+
+
+
+            if (!string.IsNullOrEmpty(odabirSeminara) || !string.IsNullOrEmpty(statusOdobrenja))
+            {
+
+                if (statusOdobrenja == "Odobreni")
+                {
+                    upisi = upisi.Where(x => x.Status == true);
+                }
+                else if (statusOdobrenja == "Neodobreni")
+                {
+                    upisi = upisi.Where(x => x.Status == false);
+                }
+
+
+                upisi = upisi.Where(x => x.Seminar.Naziv == odabirSeminara);
+
+
+
+                return View(upisi.ToList());
+            }
+
             return View(_Db._dboPb.ToList());
+
+
         }
 
         [Authorize]
@@ -100,15 +140,3 @@ namespace Seminar_algebra.Controllers
 
     }
 }
-/*
-            Account userAccount = _context.Accounts.SingleOrDefault(e => e.UserKey == userKey);
-            User currentUser = _context.Users.SingleOrDefault(e => e.UserKey == userKey);
-            var transactions = _context.Transactions.Where(e => e.AccountID == userAccount.AccountID).OrderBy(e => e.Created_at).ToList();
-            transactions.Reverse();
-            ViewBag.History = transactions;
-            ViewBag.UserName = currentUser.FirstName;
-            ViewBag.Balance = userAccount.Balance;
-            ViewBag.UserId = currentUser.UserID;
-            ViewBag.UserKey = currentUser.UserKey;
-            return View("Account");
-            */

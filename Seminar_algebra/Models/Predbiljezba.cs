@@ -36,10 +36,14 @@ namespace Seminar_algebra.Models
         public DateTime Datum { get; set; }
         //[ForeignKey("IdSeminar")]
         [HiddenInput(DisplayValue = false)]
+        [Display(Name = "Seminar")]
         public int FkSeminar { get; set; }
         //public Seminar Seminar { get; set; }
         
         public bool Status { get; set; }
+
+        [ForeignKey("FkSeminar")]
+        public virtual Seminar Seminar { get; set; }
 
     }
 }
