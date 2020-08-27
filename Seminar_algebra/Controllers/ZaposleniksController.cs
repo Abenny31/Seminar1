@@ -36,7 +36,7 @@ namespace Seminar_algebra.Controllers
         }
 
         
-
+        [Authorize (Users = "Admin")]
         // GET: Zaposleniks/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -69,6 +69,7 @@ namespace Seminar_algebra.Controllers
         }
 
         // GET: Zaposleniks/Delete/5
+        [Authorize(Users = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

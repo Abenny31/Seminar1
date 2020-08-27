@@ -15,6 +15,8 @@ namespace Seminar_algebra.Models
         //public int SeminarID
         public string Naziv { get; set; }
         public string Opis { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime Datum { get; set; }
 
        

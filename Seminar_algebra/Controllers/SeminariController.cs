@@ -131,12 +131,78 @@ namespace Seminar_algebra.Controllers
 
         }
 
+
         [HttpGet]
         [Authorize]
+        //Novi seminar
         public ActionResult Create()
         {
             return View();
         }
 
+        [HttpPost]
+        [Authorize]
+        public ActionResult Create(Seminar seminar)
+        {
+            if (ModelState.IsValid)
+            {
+                _Db._dboSm.Add(seminar);
+                _Db.SaveChanges();
+
+                return RedirectToAction("Popis", "Seminari");
+
+            }
+            return View();
+        }
+
+     
+
+        public ActionResult Delete(int? id)
+        {
+            var izbrisi = _Db._dboPb.Where(o => o.IdPredbiljezba == id).FirstOrDefault();
+            return View(izbrisi);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            Predbiljezba predbiljezba = _Db._dboPb.Find(id);
+            _Db._dboPb.Remove(predbiljezba);
+            _Db.SaveChanges();
+            return RedirectToAction("upisi");
+           
+        }
+
+        public ActionResult DetaljiSeminar (int? id)
+        {
+            Seminar seminar = _Db._dboSm.Find(id);
+            
+            return View(seminar);
+        }
+
+        public ActionResult DetaljiPredbiljezba (int? id)
+        {
+            Predbiljezba predbiljezba = _Db._dboPb.Find(id);
+            return View(predbiljezba);
+        }
+
+        //public ActionResult IzbrisiSeminar(int? id)
+        //{
+        //    var izbrisi = _Db._dboSm.Where(o => o.IdSeminar == id).FirstOrDefault();
+        //    return View(izbrisi);
+        //}
+        //[HttpPost]
+        //public ActionResult IzbrisiSeminar(int id)
+        //{
+        //   Seminar seminar = _Db._dboSm.Find(id);
+        //    //Predbiljezba predbiljezba = new Predbiljezba();
+        //    //predbiljezba.FkSeminar = seminar.IdSeminar;
+
+        //    //_Db._dboPb.Remove(predbiljezba);
+        //    _Db._dboSm.Remove(seminar);
+
+        //    _Db.SaveChanges();
+        //    return RedirectToAction("Popis");
+
+        //}
     }
 }

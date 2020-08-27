@@ -4,7 +4,7 @@
     ViewBag.Title = "Zaposlenici";
 }
 
-<h2>Index</h2>
+<h2>Zaposlenici</h2>
 
 <p>
     @Html.ActionLink("Novi zaposlenik", "Register","Home", null, new {@class = "nav-link text-center" } )
@@ -42,11 +42,13 @@
     {<td>
             @Html.DisplayFor(modelItem => item.Lozinka)
         </td>}
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.IdZaposlenik }) |
-        @Html.ActionLink("Details", "Details", new { id = item.IdZaposlenik }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.IdZaposlenik })
-    </td>
+<td>
+    @if (User.Identity.Name == "Admin")
+    {
+        @Html.ActionLink("Uredi", "Edit", new { id = item.IdZaposlenik })} |
+    @Html.ActionLink("Detalji", "Details", new { id = item.IdZaposlenik }) |
+    @Html.ActionLink("Izbriši", "Delete", new { id = item.IdZaposlenik })
+</td>
 </tr>
 }
 

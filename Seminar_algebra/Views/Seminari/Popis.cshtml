@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Seminar_algebra.Models.Seminar>
 
 @{
-    ViewBag.Title = "Popis";
+    ViewBag.Title = "Popis seminara";
 }
 
 <h2>Popis</h2>
@@ -31,14 +31,16 @@
 
       @foreach ( var item in Model )
     {
-    <tr>
-        @Html.HiddenFor(modelItem => item.IdSeminar)
-        <td>@Html.DisplayFor(modelItem  => item.Naziv)</td>
-        <td>@Html.DisplayFor(modelItem => item.Opis)</td>
-        <td>@Html.DisplayFor(modelItem => item.Datum)</td>
-        <td>@Html.ActionLink("Predbiljezba", "Predbiljezba", new { id = item.IdSeminar, datum=item.Datum})</td>
-        @*<td>@Html.ActionLink("Izbriši","Izbrisi", new { id = item.ID })</td>*@
-    </tr>
+<tr>
+    @Html.HiddenFor(modelItem => item.IdSeminar)
+    <td>@Html.DisplayFor(modelItem => item.Naziv)</td>
+    <td>@Html.DisplayFor(modelItem => item.Opis)</td>
+    <td>@Html.DisplayFor(modelItem => item.Datum)</td>
+    <td>@Html.ActionLink("Predbiljezba", "Predbiljezba", new { id = item.IdSeminar, datum = item.Datum })</td>
+    @if (User.Identity.IsAuthenticated) { <td>@Html.ActionLink("Detalji", "DetaljiSeminar", new { id = item.IdSeminar })</td>
+                                          @*<td>@Html.ActionLink("Izbriši", "IzbrisiSeminar", new { id = item.IdSeminar })</td>*@}
+@*<td>@Html.ActionLink("Izbriši","Izbrisi", new { id = item.ID })</td>*@
+</tr>
     }
     </table>
 
