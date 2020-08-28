@@ -33,6 +33,8 @@ namespace Seminar_algebra.Models
         
         [Required]
         public string Mjesto { get; set; }
+        
+       
         public DateTime Datum { get; set; }
         //[ForeignKey("IdSeminar")]
         [HiddenInput(DisplayValue = false)]
