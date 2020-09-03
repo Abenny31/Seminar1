@@ -6589,9 +6589,15 @@ button.close {
   clear: both;
 }
 .center-block {
-  display: block;
+    /*display: block;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: auto;*/
+    display: block;
+    margin: auto;
+    width: 20%;
+    border: 3px solid black;
+    padding: 10px;
+    text-align:center;
 }
 .pull-right {
   float: right !important;
@@ -6831,4 +6837,5 @@ button.close {
     display: none !important;
   }
 }
+
 /*# sourceMappingURL=bootstrap.css.map */
