@@ -33,8 +33,8 @@ namespace Seminar_algebra.Models
         
         [Required]
         public string Mjesto { get; set; }
-        
-       
+
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}")]
         public DateTime Datum { get; set; }
         //[ForeignKey("IdSeminar")]
         [HiddenInput(DisplayValue = false)]

@@ -34,7 +34,7 @@ namespace Seminar_algebra.Controllers
 
             if (ModelState.IsValid)
             {
-                bool IsValidUser = _Db._dboZp.Any(u => u.KorisnickoIme.ToLower() == zaposlenik.KorisnickoIme.ToLower() && zaposlenik.Lozinka == zaposlenik.Lozinka);
+                bool IsValidUser = _Db._dboZp.Any(u => u.KorisnickoIme.ToLower() == zaposlenik.KorisnickoIme.ToLower() && u.Lozinka == zaposlenik.Lozinka);
 
                 if (IsValidUser)
                 {

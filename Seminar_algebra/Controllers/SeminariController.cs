@@ -19,7 +19,7 @@ namespace Seminar_algebra.Controllers
             return View(_Db._dboSm.ToList());
         }
 
-        public ActionResult Predbiljezba(int? id, DateTime datum)
+        public ActionResult Predbiljezba(int? id, DateTime datum,string Naziv)
         {
             if (id == null)
             {
@@ -30,6 +30,8 @@ namespace Seminar_algebra.Controllers
                 Predbiljezba aktivna = new Predbiljezba();
                 aktivna.FkSeminar = (int)id;
                 aktivna.Datum = datum;
+                
+                    ViewBag.nazivSeminara = Naziv ;
 
 
                 return View(aktivna);
@@ -185,24 +187,24 @@ namespace Seminar_algebra.Controllers
             return View(predbiljezba);
         }
 
-        //public ActionResult IzbrisiSeminar(int? id)
-        //{
-        //    var izbrisi = _Db._dboSm.Where(o => o.IdSeminar == id).FirstOrDefault();
-        //    return View(izbrisi);
-        //}
-        //[HttpPost]
-        //public ActionResult IzbrisiSeminar(int id)
-        //{
-        //   Seminar seminar = _Db._dboSm.Find(id);
-        //    //Predbiljezba predbiljezba = new Predbiljezba();
-        //    //predbiljezba.FkSeminar = seminar.IdSeminar;
+        public ActionResult IzbrisiSeminar(int? id)
+        {
+            var izbrisi = _Db._dboSm.Where(o => o.IdSeminar == id).FirstOrDefault();
+            return View(izbrisi);
+        }
+        [HttpPost]
+        public ActionResult IzbrisiSeminar(int id)
+        {
+            Seminar seminar = _Db._dboSm.Find(id);
+            //Predbiljezba predbiljezba = new Predbiljezba();
+            //predbiljezba.FkSeminar = seminar.IdSeminar;
 
-        //    //_Db._dboPb.Remove(predbiljezba);
-        //    _Db._dboSm.Remove(seminar);
+            //_Db._dboPb.Remove(predbiljezba);
+            _Db._dboSm.Remove(seminar);
 
-        //    _Db.SaveChanges();
-        //    return RedirectToAction("Popis");
+            _Db.SaveChanges();
+            return RedirectToAction("Popis");
 
-        //}
+        }
     }
 }
