@@ -38,13 +38,11 @@
     <td>@Html.DisplayFor(modelItem => item.Datum)</td>
     <td>@Html.ActionLink("Predbiljezba", "Predbiljezba", new { id = item.IdSeminar, datum = item.Datum, Naziv = item.Naziv })</td>
     @if (User.Identity.IsAuthenticated) { <td>@Html.ActionLink("Detalji", "DetaljiSeminar", new { id = item.IdSeminar })</td>
-                                          @*<td>@Html.ActionLink("Izbriši", "IzbrisiSeminar", new { id = item.IdSeminar })</td>*@}
-@*<td>@Html.ActionLink("Izbriši","Izbrisi", new { id = item.ID })</td>*@
+                                          <td>@Html.ActionLink("Izbriši", "IzbrisiSeminar", new { id = item.IdSeminar })</td>}
+
 </tr>
     }
     </table>
 
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
+

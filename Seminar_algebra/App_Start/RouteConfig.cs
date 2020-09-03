@@ -14,10 +14,18 @@ namespace Seminar_algebra
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                   "Seminari",
+                    "Seminari/{action}",
+                    new { controller = "Seminari", action = "Popis" }
+                   );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+           
         }
     }
 }

@@ -16,6 +16,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.Seminar.Naziv)
+
         </dd>
 
         <dt>
@@ -78,5 +79,6 @@
 </div>
 <p>
     @Html.ActionLink("Uredi", "Edit", new { id = Model.IdPredbiljezba }) |
+    @Html.ActionLink("Izbriši", "Delete") |
     @Html.ActionLink("Povratak na listu", "upisi")
 </p>
