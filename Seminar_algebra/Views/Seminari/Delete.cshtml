@@ -1,0 +1,88 @@
+﻿@model Seminar_algebra.Models.Predbiljezba
+
+@{
+    ViewBag.Title = "Izbriši predbilježbu";
+}
+
+<h2>Izbriši predbilježbu za @Html.DisplayFor(model=>model.Ime) @Html.DisplayFor(model=>model.Prezime)</h2>
+
+<h3>Sigurno ovo želite izbrisati?</h3>
+<div>
+    <h4>Predbiljezba</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Seminar.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seminar.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mjesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mjesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-default" /> |
+            @Html.ActionLink("Povratak na listu", "upisi")
+        </div>
+    }
+</div>

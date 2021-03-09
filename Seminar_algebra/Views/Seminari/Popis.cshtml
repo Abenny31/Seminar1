@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Seminar_algebra.Models.Seminar>
+
+@{
+    ViewBag.Title = "Popis seminara";
+}
+
+<h2>Popis</h2>
+
+<div>
+    <h4>Seminar</h4>
+    <hr />
+    <h4>
+        @if (User.Identity.IsAuthenticated) {@Html.ActionLink("Novi seminar", "Create", "Seminari", new { @class = "nav-link" }, null)}
+    </h4>
+        <dl class="dl-horizontal">
+        </dl>
+</div>
+
+<table class="table" border="1" style="text-align:center;" )>
+    <tr >
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+    </tr>
+
+      @foreach ( var item in Model )
+    {
+<tr>
+    @Html.HiddenFor(modelItem => item.IdSeminar)
+    <td>@Html.DisplayFor(modelItem => item.Naziv)</td>
+    <td>@Html.DisplayFor(modelItem => item.Opis)</td>
+    <td>@Html.DisplayFor(modelItem => item.Datum)</td>
+    <td>@Html.ActionLink("Predbiljezba", "Predbiljezba", new { id = item.IdSeminar, datum = item.Datum, Naziv = item.Naziv })</td>
+    @if (User.Identity.IsAuthenticated) { <td>@Html.ActionLink("Detalji", "DetaljiSeminar", new { id = item.IdSeminar })</td>
+                                          <td>@Html.ActionLink("Izbriši", "IzbrisiSeminar", new { id = item.IdSeminar })</td>}
+
+</tr>
+    }
+    </table>
+
+<p>
+

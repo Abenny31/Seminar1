@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Benic Seminar</title>
+    
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+ 
+  
+   
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Seminari", "Popis", "Seminari", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Zaposlenici", "Index", "Zaposleniks", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right ">
+            
+                <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Popis upisanih", "upisi", "Seminari",null, new { @class = "nav-link" })</li>
+
+
+
+                        <li>@Html.ActionLink("Novi Zaposlenik", "Register", "Home", null, new { @class = "nav-link" })</li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-center text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @User.Identity.Name
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                
+                                @Html.ActionLink("Odjava", "Logout", "Home", new { @class = "nav-link text-center text-uppercase" }, null)
+                            </div>
+                        </li>
+
+                    }
+                    else
+                    {
+
+
+
+                        <li>@Html.ActionLink("Prijava", "Login", "Home", null, new { @class = "nav-link float-left" })</li>
+
+
+
+                    }
+                </ul>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="container text-center" ; style=" width:80% ; margin: auto;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Ante Benic Seminar</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
